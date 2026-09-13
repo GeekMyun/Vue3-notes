@@ -1,0 +1,71 @@
+<!--
+1.创建应用实例
+- 语法格式：vue.createApp(App)
+- vue.createApp()是全局的API，可接收一个根组件选项对象作为参数
+- 选项对象包括数据，方法，生命周期钩子等选项
+- 创建实例后通过调用.mount()将实例的根组件挂载到指定的DON元素上
+
+2.data数据选项
+- data()函数可以return返回一个数据对象，应用程序实例会代理数据对象中的所有数据
+
+3.方法选项
+- 通过methos选项可以定义方法，应用程序会处理methods选项中的方法，实现我们想实现的功能
+
+4.生命周期钩子：应用实例创建时的一列初始化步骤
+- beforeCreate      在初始化之前且数据观测和事件配置之前调用
+- created           在实例创建之后进行调用，此时还没有开始DOM编译
+- beforeMount       在挂载开始前进行调用，此时DOM还无法操作
+- mounted           在DOM渲染结束之后进行调用
+- beforeUpdate      在数据更新时调用，适合在更新前访问现有的DOM
+- updated           在数据更改导致的虚拟DOM被重新渲染时进行调用
+- beforeDestroy     在实例销毁前调用
+- destroy           在实例销毁后调用
+-->
+
+<div id="app">
+  <h2>{{upper()}}</h2>
+  <p>{{text}}</p>
+  </div>
+<script src="../vue.global.js"> </script>
+<script type="text/javascript">
+// 创建应用实例
+const vm = Vue.createApp(
+  {
+    // data数据
+    data(){
+      return{
+        text:'hello word'
+      }
+    },
+
+    // 方法
+    methods:{
+      upper:function(){
+       return this.text[0].toUpperCase()+this.text.slice(1)
+      }
+    },
+
+    beforeCreate:function(){
+      console.log('beforeCreate');
+    },
+    created:function(){
+      console.log('created');
+    },
+    beforeMount:function(){
+      console.log('beforeMount');
+    },
+    mounted:function(){
+      console.log('mounted');
+    },
+    beforeUpdate:function(){
+      console.log('beforeUpdate');
+    },
+    updated:function(){
+      console.log('updated')
+    }
+  }
+).mount('#app');   // 挂载到id为app的元素上
+setTimeout(function(){
+  vm.text='你好世界！';
+},2000);
+</script>

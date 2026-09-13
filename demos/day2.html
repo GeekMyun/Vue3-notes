@@ -1,0 +1,24 @@
+<!-- 
+文本插值
+- 使用{{}}将文本传入HTNL中，将DOM中的文本和data中的数据进行绑定，
+  当数据改变时，文本也改变
+- 只想渲染一次，数据改变文本也不变用v-once指令
+- 如果想要显示{{}}标签，而不进行替换使用v-pre指令(不解析变量，原样显示)
+--->
+<div id="app">
+  <p>{{text}}</p>
+  <p v-once>{{text1}}</p>
+  <p v-pre>{{text2}}</p>
+</div>
+<script src='../vue.global.js'></script>
+<script type="text/javascript">
+const vm = Vue.createApp({
+  data(){
+    return{
+    text:'hello',
+    text1:'你好',
+    text2:'hello'
+    }
+  }
+}).mount('#app');
+</script>

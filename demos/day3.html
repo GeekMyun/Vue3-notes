@@ -1,0 +1,31 @@
+<!--
+传入HTML
+- 输出HTML内容用v-html指令
+- 属性绑定用v-bind指令
+-->
+<style type="text/css">
+.title{
+background-color:red;
+padding:10px;
+border:1px solid #FF0000;
+display:block;
+}
+</style>
+<div id="app">
+  <p v-html='text'></p>
+  <p v-bind:class='value'>通过v-bind绑定属性</p>
+  <p v-bind:class="{title:button}">v-bind设置属性为对象形式绑定</p>
+  <p :class='{title:button}'>简写</p>
+</div>
+<script src='../vue.global.js'></script>
+<script type="text/javascript">
+const vm = Vue.createApp({
+  data(){
+    return {
+      text:'<h2>不想上班</h2>',
+      value:'title',       // 返回一个值为title的value,在标签里即class='title'
+      button:true,      // 返回true绑定属性，false不绑定
+    }
+  }
+}).mount('#app')
+</script>
